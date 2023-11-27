@@ -1,4 +1,6 @@
-public class HierarchialInheritance{
+package OOPS.Inheritence;
+
+public class HierarchialInheritence{
     public static void main(String[] args) {
         Bike obj = new Bike();
         obj.throttle();
@@ -48,3 +50,4 @@ class Truck extends Vehicle{
         System.out.println(vehicle+" Truck carry load");
     }
 }
+
