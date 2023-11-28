@@ -1,5 +1,4 @@
 
-
 class Bikes{
     void accelerate(){
         System.out.println("Accelerate using throttle in handlebars");
