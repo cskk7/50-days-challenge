@@ -1,4 +1,3 @@
-package OOPS.Inheritence;
 
 
 class Bikes{
