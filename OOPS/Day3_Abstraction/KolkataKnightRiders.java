@@ -12,13 +12,14 @@ public class KolkataKnightRiders extends IPL{
         
 
     }
-    
+    @Override
     ArrayList<String> wicketKeeper() {
         ArrayList<String> players = new ArrayList<>();
         players.add("Liton Das");
         return players;
     }
 
+    @Override
     ArrayList<String> batsman() {
         ArrayList<String> players = new ArrayList<>();
         players.add("Nitish Rana");
@@ -28,6 +29,7 @@ public class KolkataKnightRiders extends IPL{
         return players;
     }
 
+    @Override
     ArrayList<String> bowler() {
         ArrayList<String> players = new ArrayList<>();
         players.add("Umesh Yadav");
@@ -39,6 +41,7 @@ public class KolkataKnightRiders extends IPL{
         return players;
     }
 
+    @Override
     ArrayList<String> allRounder() {
         ArrayList<String> players = new ArrayList<>();
         players.add("Venkatesh Iyer");
