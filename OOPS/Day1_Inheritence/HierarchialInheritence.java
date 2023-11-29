@@ -1,4 +1,3 @@
-package OOPS.Inheritence;
 
 public class HierarchialInheritence{
     public static void main(String[] args) {

@@ -1,3 +1,5 @@
+package OOPS.Day2_Polymorphism;
+
 public class MethodOverloading {
     public static void main(String[] args) {
        Addition obj = new Addition();
@@ -9,13 +11,13 @@ public class MethodOverloading {
     }
 }
 class Addition{
-    public static void add(int a, int b){ // only can add two arguments
+    public void add(int a, int b){ // only can add two arguments
         System.out.println(a+b);
     }
-    public static void add(int a, int b, int c){ //  can add three arguments
+    public void add(int a, int b, int c){ //  can add three arguments
         System.out.println(a+b+c);
     }
-    public static void add(int a, int b, int c, int e){ //  can add four arguments
+    public void add(int a, int b, int c, int e){ //  can add four arguments
         System.out.println(a+b+c+e);
     }
 }
