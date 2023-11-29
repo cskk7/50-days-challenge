@@ -1,5 +1,6 @@
+package OOPS.Day1_Inheritance;
 
-public class HierarchialInheritence{
+public class HierarchialInheritance{
     public static void main(String[] args) {
         Bike obj = new Bike();
         obj.throttle();

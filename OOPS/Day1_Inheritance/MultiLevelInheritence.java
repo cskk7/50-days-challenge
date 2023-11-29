@@ -1,3 +1,5 @@
+package OOPS.Day1_Inheritance;
+
 public class MultiLevelInheritence{
     public static void main(String[] args) {
             Area myPlace = new Area();

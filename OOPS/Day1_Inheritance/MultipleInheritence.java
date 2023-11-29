@@ -1,3 +1,4 @@
+package OOPS.Day1_Inheritance;
 
 class Bikes{
     void accelerate(){

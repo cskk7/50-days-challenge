@@ -1,3 +1,5 @@
+package OOPS.Day1_Inheritance;
+
 // Here, the attributes from SampleClass are inherited to SingleInheritence class
 
 public class SingleInheritence extends SampleClass{
