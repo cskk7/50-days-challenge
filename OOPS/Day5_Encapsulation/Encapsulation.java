@@ -35,5 +35,4 @@ class Details{
         this.age = age;
     }
 
-    
 }
