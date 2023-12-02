@@ -1,0 +1,1 @@
+# List has two types ArrayList and LinkedList
