@@ -11,7 +11,6 @@ public class HashSet_String {
         set.add("wallet");
         set.add("bracelet");
         set.add("ring");
-    
         System.out.println(set);
     }
 }

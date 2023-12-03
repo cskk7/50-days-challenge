@@ -13,7 +13,6 @@ public class HashSet_Iterator {
         furniture.add("cot");
         furniture.add("dining table");
         furniture.add("dressing table");
-
         System.out.println(furniture);
     }
 }

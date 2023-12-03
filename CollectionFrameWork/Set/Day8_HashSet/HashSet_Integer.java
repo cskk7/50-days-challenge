@@ -17,7 +17,6 @@ public class HashSet_Integer{
     set.add(72);
     set.add(81);
     set.add(100);
-
     System.out.println(set);
   }
 }
