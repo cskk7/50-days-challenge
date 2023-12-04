@@ -11,7 +11,6 @@ public class LinkedHashSet_String {
         set.add("monkey");
         set.add("cow");
         set.add("donkey");
-
         System.out.println(set);
     }
 }

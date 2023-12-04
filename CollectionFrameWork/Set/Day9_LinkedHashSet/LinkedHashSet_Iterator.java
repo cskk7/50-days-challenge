@@ -15,6 +15,7 @@ public class LinkedHashSet_Iterator {
         mySet.add("Friday");
         mySet.add("Saturday");
 
+        
         Iterator<String> itr = mySet.iterator();
         while (itr.hasNext()) {
             System.out.println(itr.next());

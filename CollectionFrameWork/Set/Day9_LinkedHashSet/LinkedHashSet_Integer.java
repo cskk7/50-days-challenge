@@ -13,7 +13,6 @@ public class LinkedHashSet_Integer {
         set.add(9);
         set.add(27);
         set.add(63);
-
         System.out.println(set);
     }
     
