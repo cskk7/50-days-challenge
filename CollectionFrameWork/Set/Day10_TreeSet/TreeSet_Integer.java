@@ -13,7 +13,6 @@ public class TreeSet_Integer {
         treeSet.add(20);
         treeSet.add(80);
         treeSet.add(70);
-
         System.out.println(treeSet);
     }
 }
