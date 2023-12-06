@@ -20,7 +20,7 @@ public class HashMap_Iterator {
         Iterator<Map.Entry<Integer,String>> itr = players.entrySet().iterator();
         while ((itr.hasNext())) {
             Map.Entry<Integer,String> entry = itr.next();
-            System.out.println("Key: "+entry.getKey()+" , Value: "+entry.getValue());
+            System.out.println("Jersey number: "+entry.getKey()+" , Player: "+entry.getValue());
         }
     }
 }
