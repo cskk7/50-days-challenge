@@ -1,6 +1,7 @@
 package CollectionFrameWork.Set.Day8_HashSet;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 public class HashSet_Iterator {
@@ -14,5 +15,10 @@ public class HashSet_Iterator {
         furniture.add("dining table");
         furniture.add("dressing table");
         System.out.println(furniture);
+
+        Iterator<String> itr = furniture.iterator();
+        while (itr.hasNext()) {
+            System.out.println(itr.next());
+        }
     }
 }
