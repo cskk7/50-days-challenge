@@ -17,6 +17,7 @@ public class TreeMap_Iterator {
         pincode.put(600016, "Kanchipuram");
         pincode.put(621110, "Salem");
 
+        
         Iterator<Map.Entry<Integer,String>>  itr = pincode.entrySet().iterator();
         while (itr.hasNext()) {
             Map.Entry<Integer,String> entry = itr.next();
