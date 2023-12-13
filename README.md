@@ -13,11 +13,11 @@ Day 10 - Treeset in Java<br>
 Day 11 - Hashmap in Java<br>
 Day 12 - Linked Hashmap in Java<br>
 Day 13 - TreeMap in Java<br>
-Day 14 - Hashmap in Java<br>
-Day 15 - Hashmap in Java<br>
-Day 16 - Hashmap in Java<br>
-Day 17 - Hashmap in Java<br>
-Day 18 - Hashmap in Java<br>
+Day 14 - Taking input in Array, Print elements in Array in Java<br>
+Day 15 - Find element in Array, Sum of elements in Array in Java<br>
+Day 16 - Reverse the given string, Split the string into words in Java<br>
+Day 17 - Exception Handling in Java<br>
+Day 18 - Find Smallest and Largest element in Array in Java<br>
 
 
 
