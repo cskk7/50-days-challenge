@@ -11,5 +11,13 @@ Day 8 - Hashset in Java<br>
 Day 9 - Linked Hashset in Java<br>
 Day 10 - Treeset in Java<br>
 Day 11 - Hashmap in Java<br>
+Day 12 - Linked Hashmap in Java<br>
+Day 13 - TreeMap in Java<br>
+Day 14 - Hashmap in Java<br>
+Day 15 - Hashmap in Java<br>
+Day 16 - Hashmap in Java<br>
+Day 17 - Hashmap in Java<br>
+Day 18 - Hashmap in Java<br>
+
 
 
