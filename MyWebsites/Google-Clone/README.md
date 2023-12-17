@@ -1,3 +1,3 @@
 <div id="header">
-  <img src="50-days-challenge/MyWebsites/Google-Clone/Output.png" width="100" class="inline"/>
+  <img src="https://raw.githubusercontent.com/cskk7/50-days-challenge/main/MyWebsites/Google-Clone/Output.png"/>
 </div>
