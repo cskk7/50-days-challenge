@@ -18,6 +18,10 @@ Day 15 - Find element in Array, Sum of elements in Array in Java<br>
 Day 16 - Reverse the given string, Split the string into words in Java<br>
 Day 17 - Exception Handling in Java<br>
 Day 18 - Find Smallest and Largest element in Array in Java<br>
+Day 19 - Find Longest word, shortest word in a sentence<br>
+Day 20 - Convert the first letters in every words in a sentence to capital letters
+
+Day 21 - Clone of Google website
 
 
 
