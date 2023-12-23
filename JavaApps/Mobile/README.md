@@ -1,4 +1,4 @@
-<div>
+<div id="header">
   <img src="https://raw.githubusercontent.com/cskk7/50-days-challenge/main/JavaApps/Mobile/Output.png"/>
   <img src="https://raw.githubusercontent.com/cskk7/50-days-challenge/main/JavaApps/Mobile/Input1.png"/>
   <img src="https://raw.githubusercontent.com/cskk7/50-days-challenge/main/JavaApps/Mobile/Input2.png"/>
