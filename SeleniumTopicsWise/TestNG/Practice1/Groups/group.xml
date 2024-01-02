@@ -1,0 +1,13 @@
+<suite name="Codoid-Test">
+    <test name="Group-Test">
+        <groups>
+            <run>
+                <include name="Regression"/>
+<!--                <include name="smoke"/>-->
+            </run>
+        </groups>
+        <classes>
+            <class name="testngPractice.GroupTesting"/>
+        </classes>
+    </test>
+</suite>
