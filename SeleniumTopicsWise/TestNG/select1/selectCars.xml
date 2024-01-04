@@ -1,0 +1,13 @@
+<suite name="Cars">
+    <test name="Selecting-Options">
+        <groups>
+            <run>
+               <include name="SelectOptions"/>
+               <include name="PrintOptions"/>
+            </run>
+        </groups>
+    <classes>
+        <class name="select1.SelectPractice"/>
+    </classes>
+</test>
+</suite>
