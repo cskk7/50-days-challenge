@@ -1,17 +1,18 @@
 package tests;
+import org.openqa.selenium.WebDriver;
 import pages.DriverClass;
 import pages.LoginPage;
 
-import java.util.Set;
 
-public class DemoTest{
+public class DemoTest extends DriverClass {
     static LoginPage loginPage;
+
+    static WebDriver driver = getDriver();
 
     public static void main(String[] args) {
 
 // LOGIN PAGE
-
-        loginPage = new LoginPage(loginPage.getDriver());
+        loginPage = new LoginPage(driver);
 
         loginPage.launchURL("https://practicetestautomation.com/practice-test-login/");
 
