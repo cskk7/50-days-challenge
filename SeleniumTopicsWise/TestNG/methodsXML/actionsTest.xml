@@ -1,0 +1,13 @@
+<suite name="Actions-1">
+    <test name="Test-1">
+        <classes>
+            <class name="actions1.ActionsPractice">
+                <methods>
+                    <include  name="switchToDroppableFrame"/>
+                    <include  name="dragAndDrop"/>
+                    <include  name="clickAndHold"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
