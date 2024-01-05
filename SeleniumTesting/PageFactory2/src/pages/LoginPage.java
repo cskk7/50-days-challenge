@@ -12,7 +12,7 @@ public class LoginPage extends DriverClass{
 
     public LoginPage(WebDriver driver){
         this.driver = driver;
-        PageFactory.initElements(getDriver(),this);
+        PageFactory.initElements(driver,this);
     }
 
     @FindBy(how = How.ID, using = "username")
