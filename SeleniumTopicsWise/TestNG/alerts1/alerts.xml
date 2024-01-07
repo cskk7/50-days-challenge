@@ -1,0 +1,14 @@
+<suite name="Alert-1">
+    <test name="Test-1">
+        <groups>
+            <run>
+                <include name="Alerts"/>
+                <include name="Confirm"/>
+                <include name="Prompt"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="alerts1.AlertsPrac"/>
+        </classes>
+    </test>
+</suite>
