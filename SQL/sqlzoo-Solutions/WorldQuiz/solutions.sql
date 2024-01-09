@@ -34,3 +34,4 @@ SELECT name FROM world
 -- ANS: Brazil
 --      Colombia
 
+Select * from Hemanth;
