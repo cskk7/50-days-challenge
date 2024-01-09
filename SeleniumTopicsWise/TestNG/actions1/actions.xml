@@ -1,0 +1,13 @@
+<suite name="Actions-1">
+    <test name="Test-1">
+        <groups>
+            <run>
+<!--                <include name="Slider"/>-->
+                <include name="Right CLick"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="actions1.ActionsPractice"/>
+        </classes>
+    </test>
+</suite>
