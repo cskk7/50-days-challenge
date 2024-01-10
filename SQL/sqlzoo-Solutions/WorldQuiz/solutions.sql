@@ -36,5 +36,4 @@ SELECT name FROM world
 
 Select * from Hemanth;
 
-Select * from employer
-Where name = "Karthi";
+Select * from employer;
