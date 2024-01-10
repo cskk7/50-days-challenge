@@ -35,3 +35,6 @@ SELECT name FROM world
 --      Colombia
 
 Select * from Hemanth;
+
+Select * from employer
+Where name = "Karthi";
