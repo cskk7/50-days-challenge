@@ -1,4 +1,7 @@
+package Test.demoqa;
 
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -10,14 +13,19 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import org.testng.Assert;
 
-public class StepsDefinitions {
+public class ToDoStepDefinition {
 
-    public WebDriver driver = new ChromeDriver();
+    WebDriver driver;
+    @Before
+    public void setup() {
+        driver = new ChromeDriver();
+    }
 
-    @Given("user is on home Page")
-    public void loginPage()  {
+    @Given("Login page")
+    public void loginPage() {
         driver.get("https://practicetestautomation.com/practice-test-login/");
     }
+
 
     @When("user enter valid username {string}")
     public void userEnterValidUsername(String arg0) {
@@ -29,7 +37,7 @@ public class StepsDefinitions {
 
     @And("user enter valid password {string}")
     public void userEnterValidPassword(String arg0) {
-        WebElement user = driver.findElement(By.xpath("//input[@id='username']"));
+        WebElement user = driver.findElement(By.xpath("//input[@id='password']"));
         user.sendKeys(arg0);
         String passwordInput = user.getAttribute("value");
         Assert.assertTrue(passwordInput.contains(arg0));
@@ -74,7 +82,7 @@ public class StepsDefinitions {
 
     @And("user enter invalid password {string}")
     public void userEnterInvalidPassword(String arg0) {
-        WebElement user = driver.findElement(By.name("username"));
+        WebElement user = driver.findElement(By.name("password"));
         user.sendKeys(arg0);
         String passwordInput = user.getAttribute("value");
         Assert.assertFalse(passwordInput.contains(arg0));
@@ -85,4 +93,11 @@ public class StepsDefinitions {
         String errorMessage = driver.findElement(By.id("error")).getText();
         Assert.assertEquals(errorMessage,arg0);
     }
+
+    @After
+    public void cleanUp() {
+        driver.quit();
+    }
+
+
 }
