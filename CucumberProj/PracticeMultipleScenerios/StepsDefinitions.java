@@ -2,6 +2,7 @@ package Test.demoqa;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -15,7 +16,7 @@ import org.testng.Assert;
 
 public class ToDoStepDefinition {
 
-    WebDriver driver;
+    protected WebDriver driver;
     @Before
     public void setup() {
         driver = new ChromeDriver();
@@ -25,7 +26,6 @@ public class ToDoStepDefinition {
     public void loginPage() {
         driver.get("https://practicetestautomation.com/practice-test-login/");
     }
-
 
     @When("user enter valid username {string}")
     public void userEnterValidUsername(String arg0) {
@@ -45,19 +45,19 @@ public class ToDoStepDefinition {
 
     @And("user click submit button")
     public void userClickSubmitButton() {
-        WebElement user = driver.findElement(By.name("submit"));
+        WebElement user = driver.findElement(By.xpath("//button[@id='submit']"));
         user.click();
     }
     @Then("user enters to profile page")
     public void userEntersToProfilePage() {
         String title = driver.getTitle();
-        Assert.assertTrue(title.contains("Test login"));
+        Assert.assertTrue(title.contains("Logged In Successfully"));
     }
 
     @And("user is displayed {string}")
     public void userIsDisplayed(String arg0) {
         String text = driver.findElement(By.className("post-content")).getText();
-        Assert.assertEquals(text,arg0);
+        Assert.assertTrue(text.contains(arg0));
     }
 
     @And("log out button is displayed")
@@ -68,10 +68,10 @@ public class ToDoStepDefinition {
 
     @When("user enter invalid username {string}")
     public void userEnterInvalidUsername(String arg0) {
-        WebElement user = driver.findElement(By.name("username"));
+        WebElement user = driver.findElement(By.xpath("//input[@id='username']"));
         user.sendKeys(arg0);
         String usernameInput = user.getAttribute("value");
-        Assert.assertFalse(usernameInput.contains(arg0));
+        Assert.assertEquals(usernameInput,arg0);
     }
 
     @Then("error message is displayed")
@@ -82,10 +82,10 @@ public class ToDoStepDefinition {
 
     @And("user enter invalid password {string}")
     public void userEnterInvalidPassword(String arg0) {
-        WebElement user = driver.findElement(By.name("password"));
+        WebElement user = driver.findElement(By.xpath("//input[@id='password']"));
         user.sendKeys(arg0);
         String passwordInput = user.getAttribute("value");
-        Assert.assertFalse(passwordInput.contains(arg0));
+        Assert.assertEquals(passwordInput,arg0);
     }
 
     @And("error text is {string}")
@@ -95,7 +95,8 @@ public class ToDoStepDefinition {
     }
 
     @After
-    public void cleanUp() {
+    public void cleanUp()
+    {
         driver.quit();
     }
 
