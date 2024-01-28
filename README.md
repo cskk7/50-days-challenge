@@ -19,12 +19,12 @@ Day 16 - Reverse the given string, Split the string into words in Java<br>
 Day 17 - Exception Handling in Java<br>
 Day 18 - Find Smallest and Largest element in Array in Java<br>
 Day 19 - Find Longest word, shortest word in a sentence<br>
-Day 20 - Convert the first letters in every words in a sentence to capital letters
-
+Day 20 - Convert the first letters in every words in a sentence to capital letters<br>
 Day 21 - Clone of Google website
-Day 22 - Clone of Youtube website
-Day 23 - Created website to practice XPath Axes
-Day 24 - Created Selenium Java script to test Global SQA website
-Day 25 - Created Selenium Java script to test the Alert boxes
-Day 26 - Created Selenium Java script to test TextBox, Font color, Background color
- 
+<br>Day 22 - Clone of Youtube website
+<br>Day 23 - Created website to practice XPath Axes
+<br>Day 24 - Created Selenium Java script to test Global SQA website
+<br>Day 25 - Created Selenium Java script to test the Alert boxes
+<br>Day 26 - Created Selenium Java script to test TextBox, Font color, Background color
+<br>Day 27 - Created GUI App using Java Swing
+<br>Day 28 - Created Pizza order using Java OOPS<br>
