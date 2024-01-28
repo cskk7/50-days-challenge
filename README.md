@@ -26,5 +26,8 @@ Day 21 - Clone of Google website
 <br>Day 24 - Created Selenium Java script to test Global SQA website
 <br>Day 25 - Created Selenium Java script to test the Alert boxes
 <br>Day 26 - Created Selenium Java script to test TextBox, Font color, Background color
-<br>Day 27 - Created GUI App using Java Swing
+<br>Day 27 - Created GUI App using Java Swing for Mobile Keypad
 <br>Day 28 - Created Pizza order using Java OOPS<br>
+Day 29 - Solved Basic sql queries from sqlzoo.net<br>
+Day 30 - Created Selenium Java Script using Page Factory<br>
+Day 31 - Created GUI App using Java swing for Train Schedule
