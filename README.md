@@ -24,6 +24,7 @@ Day 20 - Convert the first letters in every words in a sentence to capital lette
 Day 21 - Clone of Google website
 Day 22 - Clone of Youtube website
 Day 23 - Created website to practice XPath Axes
-
-
-
+Day 24 - Created Selenium Java script to test Global SQA website
+Day 25 - Created Selenium Java script to test the Alert boxes
+Day 26 - Created Selenium Java script to test TextBox, Font color, Background color
+ 
