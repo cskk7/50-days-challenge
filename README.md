@@ -1,4 +1,4 @@
-![image](https://github.com/cskk7/50-days-challenge/assets/52634703/b471e041-1597-4fc8-9bbc-4fdec171de68)# I started this repo to undergo a self-challenge mode for 50 days.
+# I started this repo to undergo a self-challenge mode for 50 days.
 
 Day 1 - Inheritence in Java<br>
 Day 2 - Polymorphism in Java<br>
