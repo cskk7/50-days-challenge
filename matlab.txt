@@ -1,0 +1,323 @@
+% INPUTS OF TOWER WITHOUT TMD %
+clc;
+clear;
+% Define system parameters
+% Inputs of mass matrix %
+Ms = 7.466*10^6; % Mass of the spar in kg
+Mt = ((2.5*10^5)+(2.4*10^5)+(1.1*10^5)); % Mass of the tower including tower, nacelle and rotor in kg
+M = Ms + Mt;
+rho = 1025; % Desity of sea water in kg/m3
+Z0 = -10; % position of the tower bottom from SWL in % m
+Ma = 7.668*10^6; % Hydrodynamic added mass associated with surge motion 
+Ic = -646.3157*10^6; % Hydrodynamic inertial term coupling surge and spar rotation Kgm2
+Ia = 5.0324165*10^9; % Hydrodynamic added moment of inertia in Kgm2
+Rs = -89.92; % Distance between the tower bottom and centre of mass of spar in m
+Rt = 70.6; % Distance between the tower bottom and centre of mass of tower in m
+Is = 7.88*10^10; % Momnet of inertia of spar in Kgm2
+It = 2.63*10^9;% Moment of Inertia of tower in Kgm2
+Ht = 77.6; % Height of the tower in m
+
+Mass_Matrix_without_TMD = [M+Ma Ic-(Ms*Rs) Mt*Rt 0;Ic-(Ms*Rs) Is+Ia 0 0;Mt*Rt 0 It 0;0 0 0 M];
+disp('The mass matrix is :');
+disp(Mass_Matrix_without_TMD);
+
+% Inputs of stiffness matrix %
+Ks = 41180; % Surge stiffness in N/m
+Kh = 335000; % Heave hydrostatic stiffness in N/m
+Kp = 1.613*10^9; % Pitch hydrostatic stiffness in Nm/rad
+Kt = 1.36*10^10; % Rotational stiffness in Nm/rad
+g = 9.81; % Acceleration due to gravity 
+Zk = -70; % position of mooring cables and spar connection in m
+
+Stiffness_Matrix_without_TMD = [Ks -Ks*(Z0-Zk) 0 0; -Ks*(Z0-Zk) Kp+(Ks*((Z0-Zk)^2))+Kt -Kt 0; 0 -Kt Kt-(Mt*g*Rt) 0; 0 0 0 Kh];
+disp('The Stiffness matrix is :');
+disp(Stiffness_Matrix_without_TMD);
+
+% Inputs of Damping matrix %
+Cs = 10^4; % damping coefficient associated with surge motion
+Ct = 8.5*10^7; % damping coefficient associated with tower
+Ch = 1.3*10^5; % damping coefficient associated with heave motion
+
+Damping_Matrix_without_TMD = [Cs 0 0 0;0 Ct -Ct 0;0 -Ct Ct 0;0 0 0 Ch];
+disp('The Damping Matrix is :');
+disp(Damping_Matrix_without_TMD);
+
+% INPUTS OF TOWER WITH 2 DOF TMD %
+% Inputs of mass matrix %
+Md1 = 25000; % Mass of TMD in kg
+Md2 = input('enter a MU*')*25000; % Mass of TMD in Kg
+
+Mass_Matrix_with_TMD = [M+Ma Ic-(Ms*Rs) Mt*Rt 0 0 0;Ic-(Ms*Rs) Is+Ia 0 0 0 0;Mt*Rt 0 It 0 0 0;0 0 0 M 0 0;0 0 0 0 Md1 0;0 0 0 0 0 Md2];
+disp('The mass matrix is :');
+disp(Mass_Matrix_with_TMD);
+
+% Inputs of stiffness matrix %
+Mp = 540.12*10^10; % modal pitch mass in kg
+Md = Md1 + Md2;
+MU = (Md/M)*100;
+disp(['The mass ratio is taken as: ', num2str(MU)]);
+MUbar1 = Md1/Mp;
+MUbar2 = Md2/Mp;
+Wpitch = 0.0328;
+Wd1 = Wpitch/(1+MUbar1); % Frequency of TMD in Hz
+Wd2 = Wpitch/(1+MUbar2); % Frequency of TMD in Hz
+Kd1 = (1/2)*(Md1*(Wd1^2 + Wd2^2) + sqrt(Md1*(-4*Md2*Wd1^2*Wd2^2 + Md1*(Wd1^2 - Wd2^2)^2)));
+Kd2 = (Md2*(Md1*(Wd1^2 + Wd2^2) - sqrt(Md1*(-4*Md2*Wd1^2*Wd2^2 + Md1*(Wd1^2 - Wd2^2)^2))))/(2*(Md1+Md2));
+
+Stiffness_Matrix_with_TMD = [Ks+Kd1 -Ks*(Z0-Zk) Kd1*Ht 0 -Kd1 0; -Ks*(Z0-Zk) Kp+(Ks*((Z0-Zk)^2))+Kt -Kt 0 0 0; Kd1*Ht -Kt Kt-(Mt*g*Rt)+(Kd1*Ht^2) 0 -Kd1*Ht 0; 0 0 0 Kh 0 0;-Kd1 0 -Kd1*Ht 0 Kd1+Kd2 -Kd2;0 0 0 0 -Kd2 Kd2];
+disp('The Stiffness matrix is :');
+disp(Stiffness_Matrix_with_TMD);
+
+% Inputs of Damping matrix %
+Xi1 = sqrt((3/8)*(MUbar1/(1+MUbar1))); 
+Xi2 = sqrt((3/8)*(MUbar2/(1+MUbar2))); 
+Cd1 = 2*Xi1*Wd1*Md1; % damping coefficient of TMD
+Cd2 = 2*Xi2*Wd2*Md2; % damping coefficient of TMD
+
+Damping_Matrix_with_TMD = [Cs+Cd1 0 Cd1*Ht 0 -Cd1 0;0 Ct -Ct 0 0 0;Cd1*Ht -Ct Ct+(Cd1*Ht^2) 0 -Cd1*Ht 0;0 0 0 Ch 0 0;-Cd1 0 -Cd1*Ht 0 Cd1+Cd2 -Cd2;0 0 0 0 -Cd2 Cd2];
+disp('The Damping Matrix is :');
+disp(Damping_Matrix_with_TMD);
+
+rng(1);
+% Time parameters
+t = linspace(0,2000,10000); % Time range
+dt = t(2) - t(1); % Time step
+
+% Initial conditions (displacement and velocity vectors) - without TMD
+x0 = [1; 1; 1; 1]; % Initial displacement vector (4x1)
+v0 = [1; 1; 1; 1]; % Initial velocity vector (4x1)
+
+% Initial conditions (displacement and velocity vectors) - with TMD
+x01 = [1; 1; 1; 1; 1; 1]; % Initial displacement vector (4x1)
+v01 = [1; 1; 1; 1; 1; 1]; % Initial velocity vector (4x1)
+
+% JONSWAP Parameters
+Hs = input('Enter a significant wave height '); % Significant wave height in meters
+Tp = input('Enter spectral peak period '); % Peak period in seconds
+g = 9.81; % Acceleration due to gravity
+
+disp(['Hs = ',num2str(Hs),' Tp =  ',num2str(Tp)]);
+
+% Stokes' First-Order Wave Calculation
+N = 1000; % Number of wave components
+T = 1000; % Total time duration
+t1 = linspace(0, T, 10000); % Time vector
+x = linspace(0, 1000, 10000); % Spatial vector
+y = linspace(0, 1000, 10000); % Spatial vector
+
+for i=1:N
+    theta = rand * 360;
+end 
+
+% Calculate the angular frequency
+omega_p = 2 * pi / Tp;
+
+% Calculate the frequency range
+frequencies = linspace(0.01, 2 * omega_p, N);
+delta_f = frequencies(2) - frequencies(1);
+
+% JONSWAP spectrum
+alpha = (2 * pi * Hs^2) / (g^2 * Tp^4);
+S = zeros(1, N);
+sigma1 = 0.08;
+sigma2 = 3.3;
+for i = 1:N
+    omega = 2 * pi * frequencies(i);
+    S(i) = alpha * g^2 * omega^(-5) * exp(-1.25 * (omega_p /omega)^4) * exp(log(sigma1)*exp(-(omega - omega_p)^2 / (2 * sigma2^2 * omega_p^2)));
+end
+
+% Calculate wave numbers 'k' corresponding to each frequency
+k = zeros(1, N);
+for i = 1:N
+    k(i) = frequencies(i)^2 / g;
+end
+
+% Calculate amplitudes from JONSWAP spectrum
+amplitudes = sqrt(2 * S * delta_f);
+
+% Generate irregular waves based on Stokes' first-order wave theory
+eta = zeros(size(t1));
+for i = 1:N
+    phi = rand * 2 * pi; % Random phase angle
+    omega1 = 2 * pi * frequencies(i);
+    eta = eta + amplitudes(i) .* cos(k(i) .* x .* cos(theta) + k(i) .* y .* sin(theta) - omega1 .* t1 + phi);
+end
+% Plot surface elevation
+plot(t1, eta);
+xlabel('Time (s)');
+ylabel('Surface Elevation');
+title('Irregular Waves - Surface Elevation');
+% Calculate velocity potential
+
+% Initialize variables
+N_points = 1000; % Number of points along the surface
+A_surface = 100; % Surface area
+Z = -120;
+d = 320;
+% Generate random phases
+phase = rand(N_points, 1) * 2 * 3.14;
+phi = zeros(size(t1));
+for i = 1:N
+    % Calculate angular frequency (omega) from wave frequency (frequencies)
+    omega2 = 2 * pi * frequencies(i);
+    
+    % Generate a random phase between 0 and 2*pi
+    phase = rand * 2 * pi;
+    
+    % Calculate velocity potential
+     phi = phi + (g / omega2) * amplitudes(i) *(cosh(k(i)*(d+Z))/cosh(k(i)*d)) * sin(k(i) * x *cos(theta) + k(i) * y * sin(theta) - omega2 * t1  + phase);
+end
+
+
+% Plot velocity potential
+figure;
+plot(t1, phi);
+xlabel('Time (s)');
+ylabel('Velocity Potential');
+title('Irregular Waves - Velocity Potential');
+
+% Initialize external force vector
+external_force = zeros(size(t1));
+
+for i = 1:N
+    
+    % Calculate pressure at each point using velocity potential
+    pressure = rho * g * phi;
+    
+    % Calculate force at each point (F = P * A)
+    force_point = pressure * A_surface;
+    
+    % Accumulate forces at each point to get the total external force
+    external_force = external_force + force_point;
+end
+
+% Plot the total external force
+plot(t1, external_force);
+xlabel('Time (s)');
+ylabel('External Force');
+title('External Force from Surface Elevation and Velocity Potential');
+
+% Constants
+u = input('Enter mean wind speed at hub height '); % mean wind speed
+disp(['u = ',num2str(u)]);
+A = 0.7; % turbulence scale parameter 
+L = 8.10 * A; % turbulence legth
+I = 0.14; % turbulence intensity
+
+% frequency range
+freq = linspace(0,100,1000);
+
+% Calculate Kaimal spectrum
+sigma = I * (0.75 * u + 5.6);
+S = (4 * sigma^2 * L ./ u) ./ (1 + (6 * freq * L ./ u)).^(5/3);
+
+% Plotting Kaimal Spectrum
+semilogx(freq,S,'b','linewidth',2); % Use semilogx for a logarithmic x-axis
+xlabel('Frequency (Hz)');
+ylabel('Spectral Density (S)');
+title('Kaimal Spectrum');
+grid on; % Show grid
+
+% Adjusting axis limits
+xlim([1, max(freq)]); % Set appropriate limits for x-axis
+
+% Calculate external forces based on spectra
+% Initialize external forces
+external_force_kaimal = zeros(size(t1));
+
+% Calculate external forces based on spectra
+for i = 1:N
+    
+    external_force_kaimal(:,i) = trapz(freq, sqrt(S) .* randn(size(freq)) .* exp(1i * rand(size(freq))));
+            
+   
+end
+% Euler method integration - WITHOUT TMD
+
+x = zeros(4, length(t)); % Displacement matrix (4xlength(t))
+v = zeros(4, length(t)); % Velocity matrix (4xlength(t))
+
+x(:, 1) = x0; % Initial displacement
+v(:, 1) = v0; % Initial velocity
+
+for i = 2:length(t)
+    % Calculate accelerations for each degree of freedom
+    a = (inv(Mass_Matrix_without_TMD)) *((external_force_kaimal(:, i) + external_force(:, i)) - (Stiffness_Matrix_without_TMD * x(:, i-1)) - (Damping_Matrix_without_TMD * v(:, i-1)));
+    % Update velocity and displacement using Euler method
+    v(:, i) = v(:, i-1) + dt * a; % Update velocity
+    x(:, i) = x(:, i-1) + dt * v(:, i-1); % Update displacement
+end
+
+tower_top_displacement_without_TMD = x(4, :)*Ht;
+
+
+% Calculate standard deviation of tower top displacement
+standard_deviation_tower_top_without_TMD = std(tower_top_displacement_without_TMD);
+
+% Display the standard deviation
+disp(['Standard deviation of tower top displacement without TMD: ', num2str(standard_deviation_tower_top_without_TMD)]);
+
+plot(t, tower_top_displacement_without_TMD,  'LineWidth', 1.5); % Tower top displacement without TMD
+
+% Label axes and title
+xlabel('Time (s)');
+ylabel('Tower Top Displacement (m)');
+title('Tower Top Displacement without TMD');
+
+
+% Euler method integration - WITH TMD
+x1 = zeros(6, length(t)); % Displacement matrix (4xlength(t))
+v1 = zeros(6, length(t)); % Velocity matrix (4xlength(t))
+
+x1(:, 1) = x01; % Initial displacement
+v1(:, 1) = v01; % Initial velocity
+
+for i = 2:length(t)
+    % Calculate accelerations for each degree of freedom
+    a1 = (inv(Mass_Matrix_with_TMD)) * ((external_force_kaimal(:, i) + external_force(:, i)) - (Stiffness_Matrix_with_TMD * x1(:, i-1)) - (Damping_Matrix_with_TMD * v1(:, i-1)));
+    % Update velocity and displacement using Euler method
+    v1(:, i) = v1(:, i-1) + dt * a1; % Update velocity
+    x1(:, i) = x1(:, i-1) + dt * v1(:, i-1); % Update displacement
+end
+
+tower_top_displacement_with_TMD = x1(4, :)*Ht;
+
+% Calculate the mean
+Dispplacement_without_TMD = mean(tower_top_displacement_without_TMD);
+Displacement_with_TMD = mean(tower_top_displacement_with_TMD);
+
+% Calculate standard deviation of tower top displacement
+standard_deviation_tower_top_with_TMD = std(tower_top_displacement_with_TMD);
+delta_standard_deviation_percentage = ((standard_deviation_tower_top_without_TMD - standard_deviation_tower_top_with_TMD)/standard_deviation_tower_top_without_TMD)*100; 
+
+% Display the mean,standard deviation, delta_standard deviation
+
+disp(['Standard deviation of tower top displacement with TMD: ', num2str(standard_deviation_tower_top_with_TMD)]);
+
+disp(['Displacement without TMD: ', num2str(Dispplacement_without_TMD)]);
+
+disp(['Displacement with TMD: ', num2str(Displacement_with_TMD)]);
+
+
+disp(['Delta standard deviation percentage: ', num2str(delta_standard_deviation_percentage)]);
+
+plot(t, tower_top_displacement_with_TMD,  'LineWidth', 1.5); % Tower top displacement without TMD
+
+% Label axes and title
+xlabel('Time (s)');
+ylabel('Tower Top Displacement (m)');
+title('Tower Top Displacement with TMD');
+
+% Plot tower top displacement with TMD and without TMD
+figure;
+plot(t, tower_top_displacement_without_TMD, 'LineWidth', 1.5); % Tower top displacement with TMD
+hold on;
+plot(t, tower_top_displacement_with_TMD, '--', 'LineWidth', 1.5); % Tower top displacement without TMD
+
+% Label axes and title
+xlabel('Time (s)');
+ylabel('Tower Top Displacement (m)');
+title('Tower Top Displacement Comparison: With and Without TMD');
+legend('Without TMD', 'With TMD');
+grid on;
+hold off;
